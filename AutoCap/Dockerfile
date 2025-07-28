@@ -6,7 +6,7 @@ WORKDIR /app
 COPY --chown=gradle:gradle gradlew gradlew.bat /app/
 COPY --chown=gradle:gradle gradle /app/gradle
 COPY --chown=gradle:gradle build.gradle settings.gradle /app/
-
+RUN chmod +x ./gradlew
 # Download dependencies before copying source for caching
 RUN ./gradlew --version
 
