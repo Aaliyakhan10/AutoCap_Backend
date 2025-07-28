@@ -9,13 +9,18 @@ import org.springframework.web.client.RestClient;
 @Configuration
 public class AiConfig {
 
-    @Value("${api-key}")
-    private String apiKey;
+    private final String apiKey;
+
+    public AiConfig(@Value("${API_KEY}") String apiKey) {
+        this.apiKey = apiKey;
+    }
+
     @Bean
-  public RestClient restClient(){
+    public RestClient restClient() {
         return RestClient.builder()
                 .baseUrl("https://openrouter.ai/api/v1")
-                .defaultHeader("Authorization","Bearer "+apiKey)
+                .defaultHeader("Authorization", "Bearer " + apiKey)
                 .build();
     }
 }
+
